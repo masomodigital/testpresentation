@@ -12,6 +12,13 @@
             height: 100vh;
             background-color: #f0f0f0;
             margin: 0;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Embedded Audio at the Top */
+        iframe {
+            margin-top: 10px;
         }
 
         .smartphone-container {
@@ -200,6 +207,9 @@
     </style>
 </head>
 <body>
+    <!-- Embedded Audio Player at the Top -->
+    <iframe allow="autoplay" frameborder="0" height="60" src="https://vocaroo.com/embed/1819NI61C6ZB?autoplay=0" width="300"></iframe><br /><br />
+
     <div class="smartphone-container">
         <!-- Phone A -->
         <div class="smartphone">
@@ -226,23 +236,17 @@
         </div>
     </div>
 
-    <!-- Audio Element -->
-    <audio id="audio" loop>
-        <source src="smsaudio.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-    </audio>
-
     <script>
         const callIconA = document.getElementById('callIconA');
         const callIconB = document.getElementById('callIconB');
         const incomingCall = document.getElementById('incomingCall');
         const messageA = document.getElementById('messageA');
         const messageIconB = document.getElementById('messageIconB');
-        const audio = document.getElementById('audio');
 
         function simulateCall() {
-            // Start audio
-            audio.play();
+            // Play the embedded audio
+            const iframe = document.querySelector('iframe');
+            iframe.contentWindow.postMessage('play', '*');
 
             // Show incoming call on Phone B
             setTimeout(() => {
@@ -282,4 +286,3 @@
     </script>
 </body>
 </html>
-
