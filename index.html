@@ -226,14 +226,24 @@
         </div>
     </div>
 
+    <!-- Audio Element -->
+    <audio id="audio" loop>
+        <source src="smsaudio.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
     <script>
         const callIconA = document.getElementById('callIconA');
         const callIconB = document.getElementById('callIconB');
         const incomingCall = document.getElementById('incomingCall');
         const messageA = document.getElementById('messageA');
         const messageIconB = document.getElementById('messageIconB');
+        const audio = document.getElementById('audio');
 
         function simulateCall() {
+            // Start audio
+            audio.play();
+
             // Show incoming call on Phone B
             setTimeout(() => {
                 incomingCall.style.opacity = 1;
@@ -272,3 +282,4 @@
     </script>
 </body>
 </html>
+
