@@ -16,13 +16,13 @@
 
         .smartphone-container {
             display: flex;
-            gap: 1cm; /* Reduced gap from 2cm to 1cm */
+            gap: 1.125cm; /* Reduced distance between phones by 50% */
             position: relative;
         }
 
         .smartphone {
-            width: 5cm;
-            height: 10cm;
+            width: 3cm; /* Phone size remains 75% of original */
+            height: 6cm; /* Phone size remains 75% of original */
             background-color: #333;
             border-radius: 10px;
             position: relative;
@@ -34,13 +34,13 @@
             height: 80%;
             background-color: #ffffff;
             border-radius: 10px;
-            margin-top: 1cm;
+            margin-top: 0.5cm;
             position: relative;
         }
 
         /* Call Icons */
         .call-icon-red {
-            font-size: 36px;
+            font-size: 18px; /* Adjusted for smaller size */
             color: #e74c3c;
             position: absolute;
             top: 10%;
@@ -50,7 +50,7 @@
         }
 
         .call-icon-green {
-            font-size: 36px;
+            font-size: 18px; /* Adjusted for smaller size */
             color: #2ecc71;
             position: absolute;
             top: 10%;
@@ -61,7 +61,7 @@
 
         /* Incoming call notification */
         .incoming-call {
-            font-size: 18px;
+            font-size: 12px; /* Adjusted for smaller size */
             font-weight: bold;
             color: black;
             position: absolute;
@@ -78,12 +78,12 @@
             background-color: #2ecc71;
             color: white;
             border-radius: 20px;
-            padding: 10px 15px;
+            padding: 5px 10px; /* Adjusted for smaller size */
             position: absolute;
             bottom: 20%;
             left: 10%;
             width: 80%;
-            font-size: 12px;
+            font-size: 10px; /* Adjusted for smaller size */
             opacity: 0;
             word-wrap: break-word;
             z-index: 20;
@@ -91,7 +91,7 @@
 
         /* Message Icon */
         .message-icon {
-            font-size: 36px;
+            font-size: 18px; /* Adjusted for smaller size */
             color: #2ecc71;
             position: absolute;
             bottom: 20%;
@@ -115,7 +115,7 @@
 
         .wave {
             position: absolute;
-            border: 3px solid #3498db;
+            border: 1px solid #3498db; /* Adjusted for smaller size */
             border-radius: 50%;
             opacity: 0.5;
             animation: pulse 3s infinite;
@@ -175,13 +175,13 @@
 
         @keyframes pulse {
             0% {
-                width: 0;
-                height: 0;
+                width: 75px; /* Reduced size by 25% */
+                height: 75px; /* Reduced size by 25% */
                 opacity: 1;
             }
             100% {
-                width: 150px;
-                height: 150px;
+                width: 150px; /* Reduced size by 25% */
+                height: 150px; /* Reduced size by 25% */
                 opacity: 0;
             }
         }
