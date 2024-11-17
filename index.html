@@ -13,23 +13,22 @@
             background-color: #f0f0f0;
             margin: 0;
             flex-direction: column;
-            align-items: center;
         }
 
-        /* Embedded Audio at the Top */
-        iframe {
+        /* Audio player */
+        audio {
             margin-top: 10px;
         }
 
         .smartphone-container {
             display: flex;
-            gap: 1.125cm; /* Reduced distance between phones by 50% */
+            gap: 1.125cm;
             position: relative;
         }
 
         .smartphone {
-            width: 3cm; /* Phone size remains 75% of original */
-            height: 6cm; /* Phone size remains 75% of original */
+            width: 3cm;
+            height: 6cm;
             background-color: #333;
             border-radius: 10px;
             position: relative;
@@ -45,30 +44,25 @@
             position: relative;
         }
 
-        /* Call Icons */
-        .call-icon-red {
-            font-size: 18px; /* Adjusted for smaller size */
-            color: #e74c3c;
+        .call-icon-red, .call-icon-green {
+            font-size: 18px;
             position: absolute;
             top: 10%;
             left: 30%;
             animation: ringing 1s infinite;
             z-index: 5;
+        }
+
+        .call-icon-red {
+            color: #e74c3c;
         }
 
         .call-icon-green {
-            font-size: 18px; /* Adjusted for smaller size */
             color: #2ecc71;
-            position: absolute;
-            top: 10%;
-            left: 30%;
-            animation: ringing 1s infinite;
-            z-index: 5;
         }
 
-        /* Incoming call notification */
         .incoming-call {
-            font-size: 12px; /* Adjusted for smaller size */
+            font-size: 12px;
             font-weight: bold;
             color: black;
             position: absolute;
@@ -80,49 +74,43 @@
             z-index: 10;
         }
 
-        /* Message Bubble */
         .message-bubble {
             background-color: #2ecc71;
             color: white;
             border-radius: 20px;
-            padding: 5px 10px; /* Adjusted for smaller size */
+            padding: 5px 10px;
             position: absolute;
             bottom: 20%;
             left: 10%;
             width: 80%;
-            font-size: 10px; /* Adjusted for smaller size */
+            font-size: 10px;
             opacity: 0;
             word-wrap: break-word;
             z-index: 20;
         }
 
-        /* Message Icon */
         .message-icon {
-            font-size: 18px; /* Adjusted for smaller size */
+            font-size: 18px;
             color: #2ecc71;
             position: absolute;
             bottom: 20%;
-            left: 90%; /* Start at the left edge of Phone B */
+            left: 90%;
             cursor: pointer;
             z-index: 20;
             opacity: 0;
             animation: moveMessageIcon 5s forwards;
         }
 
-        /* Call Waves Animation */
         .call-waves {
             position: absolute;
             top: 50%;
             left: 10%;
-            width: 0;
-            height: 0;
             z-index: 2;
-            animation: waveExpand 3s infinite;
         }
 
         .wave {
             position: absolute;
-            border: 1px solid #3498db; /* Adjusted for smaller size */
+            border: 1px solid #3498db;
             border-radius: 50%;
             opacity: 0.5;
             animation: pulse 3s infinite;
@@ -140,95 +128,48 @@
             animation-delay: 1s;
         }
 
-        /* Animations */
         @keyframes ringing {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.2);
-            }
-            100% {
-                transform: scale(1);
-            }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
         }
 
         @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
-        @keyframes fadeOut {
-            0% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-            }
-        }
-
-        @keyframes waveExpand {
-            0% {
-                left: 10%;
-            }
-            100% {
-                left: 70%;
-            }
+        @keyframes moveMessageIcon {
+            0% { left: 90%; opacity: 1; }
+            100% { left: -20%; opacity: 0; }
         }
 
         @keyframes pulse {
-            0% {
-                width: 75px; /* Reduced size by 25% */
-                height: 75px; /* Reduced size by 25% */
-                opacity: 1;
-            }
-            100% {
-                width: 150px; /* Reduced size by 25% */
-                height: 150px; /* Reduced size by 25% */
-                opacity: 0;
-            }
-        }
-
-        /* Moving Message Icon */
-        @keyframes moveMessageIcon {
-            0% {
-                left: 90%; /* Start at the left edge of Phone B */
-                opacity: 1;
-            }
-            100% {
-                left: -20%; /* End at the left edge of Phone A */
-                opacity: 0;
-            }
+            0% { width: 75px; height: 75px; opacity: 1; }
+            100% { width: 150px; height: 150px; opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <!-- Embedded Audio Player at the Top -->
-    <iframe allow="autoplay" frameborder="0" height="60" src="https://vocaroo.com/embed/1819NI61C6ZB?autoplay=0" width="300"></iframe><br /><br />
+    <!-- Audio Player -->
+    <audio id="callAudio" src="https://raw.githubusercontent.com/your-username/your-repo/main/smsaudio.mp3"></audio>
 
     <div class="smartphone-container">
-        <!-- Phone A -->
         <div class="smartphone">
             <div class="screen">
                 <div class="call-icon-red" id="callIconA">📞</div>
-                <div class="message-bubble" id="messageA"></div> <!-- For message sent to Phone B -->
+                <div class="message-bubble" id="messageA"></div>
             </div>
         </div>
 
-        <!-- Phone B -->
         <div class="smartphone">
             <div class="screen">
                 <div class="call-icon-green" id="callIconB">📞</div>
                 <div class="incoming-call" id="incomingCall">Incoming Call... 0110542970</div>
-                <div class="message-icon" id="messageIconB">📩</div> <!-- Message icon on Phone B -->
+                <div class="message-icon" id="messageIconB">📩</div>
             </div>
         </div>
 
-        <!-- Call Waves -->
         <div class="call-waves">
             <div class="wave"></div>
             <div class="wave"></div>
@@ -237,51 +178,43 @@
     </div>
 
     <script>
-        const callIconA = document.getElementById('callIconA');
-        const callIconB = document.getElementById('callIconB');
+        const callAudio = document.getElementById('callAudio');
         const incomingCall = document.getElementById('incomingCall');
         const messageA = document.getElementById('messageA');
         const messageIconB = document.getElementById('messageIconB');
 
         function simulateCall() {
-            // Play the embedded audio
-            const iframe = document.querySelector('iframe');
-            iframe.contentWindow.postMessage('play', '*');
+            // Play the audio
+            callAudio.play();
 
-            // Show incoming call on Phone B
+            // Incoming call animation
             setTimeout(() => {
                 incomingCall.style.opacity = 1;
                 incomingCall.style.animation = 'fadeIn 1s forwards';
-            }, 1000); // Show after 1 second
+            }, 1000);
 
-            // Show message icon on Phone B
+            // Show message icon and move it
             setTimeout(() => {
                 messageIconB.style.opacity = 1;
-                messageIconB.style.animation = 'fadeIn 1s forwards';
-            }, 3000); // Icon appears after 3 seconds
+                messageIconB.style.animation = 'moveMessageIcon 5s forwards';
+            }, 3000);
 
-            // Move message icon from Phone B to Phone A
-            setTimeout(() => {
-                messageIconB.style.animation = 'moveMessageIcon 5s forwards'; // Move message icon across the screen
-            }, 4000); // Start moving after 4 seconds
-
-            // Display message on Phone A after icon reaches it
+            // Display message on Phone A
             setTimeout(() => {
                 messageA.innerHTML = "Thanks for calling MasomoDigital! For App & Web Design, Bulk SMS, CBC Digital Learning and other online services contact 0715399449. Thanks!";
                 messageA.style.opacity = 1;
                 messageA.style.animation = 'fadeIn 1s forwards';
-            }, 9000); // Message appears on Phone A after 9 seconds
+            }, 8000);
 
-            // Reset everything for continuous animation
+            // Reset the animation
             setTimeout(() => {
                 incomingCall.style.opacity = 0;
                 messageIconB.style.opacity = 0;
                 messageA.style.opacity = 0;
                 simulateCall();
-            }, 12000); // Reset after 12 seconds
+            }, 12000);
         }
 
-        // Start the call simulation
         simulateCall();
     </script>
 </body>
