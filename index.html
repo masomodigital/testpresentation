@@ -152,7 +152,7 @@
 </head>
 <body>
     <!-- Audio Player -->
-    <audio id="callAudio" src="https://raw.githubusercontent.com/your-username/your-repo/main/smsaudio.mp3"></audio>
+    <audio id="callAudio" src="https://raw.githubusercontent.com/your-username/your-repo/main/smsaudio.mp3" preload="auto"></audio>
 
     <div class="smartphone-container">
         <div class="smartphone">
@@ -184,8 +184,10 @@
         const messageIconB = document.getElementById('messageIconB');
 
         function simulateCall() {
-            // Play the audio
-            callAudio.play();
+            // Play audio if browser allows
+            callAudio.play().catch((error) => {
+                console.warn("Autoplay blocked: user interaction required", error);
+            });
 
             // Incoming call animation
             setTimeout(() => {
